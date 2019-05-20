@@ -1,7 +1,9 @@
 {
   "name": "workspace-klm",
   "version": "0.0.0",
-  "license": "MIT",
+  "license": "ISC",
+  "author": "Daniel Danielecki",
+  "description": "KLM test for front-end position",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
