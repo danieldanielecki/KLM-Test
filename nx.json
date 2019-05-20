@@ -1,0 +1,18 @@
+{
+  "npmScope": "workspace-klm",
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": "*",
+    "tsconfig.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*"
+  },
+  "projects": {
+    "workspace-klm": {
+      "tags": []
+    },
+    "workspace-klm-e2e": {
+      "tags": []
+    }
+  }
+}

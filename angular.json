@@ -1,0 +1,142 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "",
+  "projects": {
+    "workspace-klm": {
+      "root": "apps/workspace-klm/",
+      "sourceRoot": "apps/workspace-klm/src",
+      "projectType": "application",
+      "prefix": "workspace-klm",
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "style": "scss"
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/workspace-klm",
+            "index": "apps/workspace-klm/src/index.html",
+            "main": "apps/workspace-klm/src/main.ts",
+            "polyfills": "apps/workspace-klm/src/polyfills.ts",
+            "tsConfig": "apps/workspace-klm/tsconfig.app.json",
+            "assets": [
+              "apps/workspace-klm/src/favicon.ico",
+              "apps/workspace-klm/src/assets"
+            ],
+            "styles": ["apps/workspace-klm/src/styles.scss"],
+            "scripts": [],
+            "es5BrowserSupport": true
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/workspace-klm/src/environments/environment.ts",
+                  "with": "apps/workspace-klm/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "workspace-klm:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "workspace-klm:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "workspace-klm:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/workspace-klm/tsconfig.app.json",
+              "apps/workspace-klm/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "apps/workspace-klm/jest.config.js",
+            "tsConfig": "apps/workspace-klm/tsconfig.spec.json",
+            "setupFile": "apps/workspace-klm/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "workspace-klm-e2e": {
+      "root": "apps/workspace-klm-e2e",
+      "projectType": "application",
+      "prefix": "",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/builders:cypress",
+          "options": {
+            "cypressConfig": "apps/workspace-klm-e2e/cypress.json",
+            "tsConfig": "apps/workspace-klm-e2e/tsconfig.e2e.json",
+            "devServerTarget": "workspace-klm:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "workspace-klm:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "apps/workspace-klm-e2e/tsconfig.e2e.json",
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "warnings": {
+      "typescriptMismatch": false,
+      "versionMismatch": false
+    },
+    "defaultCollection": "@nrwl/schematics"
+  },
+  "schematics": {
+    "@nrwl/schematics:application": {
+      "style": "scss",
+      "framework": "angular"
+    },
+    "@nrwl/schematics:library": {
+      "style": "scss"
+    }
+  },
+  "defaultProject": "workspace-klm"
+}
