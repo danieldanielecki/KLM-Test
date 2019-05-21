@@ -13,6 +13,18 @@
     },
     "workspace-klm-e2e": {
       "tags": []
+    },
+    "home": {
+      "tags": ["home"]
+    },
+    "not-found": {
+      "tags": ["not-found"]
+    },
+    "core": {
+      "tags": ["core"]
+    },
+    "shared": {
+      "tags": ["shared"]
     }
   }
 }
