@@ -1,6 +1,6 @@
 {
   "name": "workspace-klm",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "license": "ISC",
   "author": "Daniel Danielecki",
   "description": "KLM test for front-end position",
@@ -11,6 +11,7 @@
     "test": "ng test",
     "lint": "./node_modules/.bin/nx lint && ng lint",
     "e2e": "ng e2e",
+    "deploy": "firebase deploy --only hosting --token $ACCESS_TOKEN_FIREBASE",
     "affected:apps": "./node_modules/.bin/nx affected:apps",
     "affected:libs": "./node_modules/.bin/nx affected:libs",
     "affected:build": "./node_modules/.bin/nx affected:build",
@@ -47,23 +48,25 @@
     "zone.js": "^0.8.26"
   },
   "devDependencies": {
-    "jest-preset-angular": "7.0.0",
-    "@nrwl/builders": "7.8.6",
-    "jest": "24.1.0",
-    "@types/jest": "24.0.9",
+    "@angular-builders/custom-webpack": "^7.4.3",
+    "@angular-builders/dev-server": "^7.3.1",
+    "@angular-devkit/build-angular": "~0.13.0",
+    "@angular/cli": "7.3.1",
     "@angular/compiler-cli": "~7.2.0",
     "@angular/language-service": "^7.0.0",
-    "@angular-devkit/build-angular": "~0.13.0",
+    "@nrwl/builders": "7.8.6",
+    "@nrwl/schematics": "7.8.6",
+    "@types/jest": "24.0.9",
+    "@types/jquery": "3.3.6",
+    "@types/node": "~8.9.4",
     "codelyzer": "~4.5.0",
     "cypress": "3.1.0",
-    "@types/jquery": "3.3.6",
-    "@angular/cli": "7.3.1",
-    "@nrwl/schematics": "7.8.6",
-    "@types/node": "~8.9.4",
     "dotenv": "6.2.0",
+    "jest": "24.1.0",
+    "jest-preset-angular": "7.0.0",
+    "prettier": "1.16.4",
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",
-    "typescript": "3.2.2",
-    "prettier": "1.16.4"
+    "typescript": "3.2.2"
   }
 }

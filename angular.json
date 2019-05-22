@@ -15,8 +15,11 @@
       },
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-builders/custom-webpack:browser",
           "options": {
+            "customWebpackConfig": {
+              "path": "./custom-webpack.config.js"
+            },
             "outputPath": "dist/apps/workspace-klm",
             "index": "apps/workspace-klm/src/index.html",
             "main": "apps/workspace-klm/src/main.ts",
@@ -58,7 +61,7 @@
           }
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "@angular-builders/dev-server:generic",
           "options": {
             "browserTarget": "workspace-klm:build"
           },

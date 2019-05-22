@@ -1,0 +1,7 @@
+{
+  "projects": {
+    "default": "klm-test-dev",
+    "development": "klm-test-dev",
+    "production": "klm-test-prod"
+  }
+}

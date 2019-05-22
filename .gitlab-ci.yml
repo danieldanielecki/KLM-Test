@@ -1,0 +1,32 @@
+image: node:latest
+
+before_script:
+  - npm install
+
+cache:
+  paths:
+    - node_modules/
+  key: "$CI_BUILD_REPO" # Identifier by which cache is validated.
+
+stages:
+  - deploy
+
+deploy_development:
+  stage: deploy
+  environment:
+    name: development
+  script:
+    - npm run build
+    - npm run deploy
+  only:
+    - development # Corresponding only to the development branch.
+
+deploy_production:
+  stage: deploy
+  environment:
+    name: production
+  script:
+    - npm run build
+    - npm run deploy
+  only:
+    - master # Corresponding only to the master branch.
