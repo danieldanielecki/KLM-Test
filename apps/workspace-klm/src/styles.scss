@@ -1,0 +1,14 @@
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+// Overwrite Angular Material's styles.
+.mat-drawer-backdrop {
+  position: fixed !important;
+}
