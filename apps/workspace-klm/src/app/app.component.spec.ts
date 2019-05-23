@@ -1,3 +1,4 @@
+import 'hammerjs';
 import { AppComponent } from './app.component';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -20,6 +21,18 @@ describe('AppComponent', () => {
       ]
     }).compileComponents();
   }));
+
+  // Required by Jest to pass the test.
+  beforeAll(() => {
+    Object.defineProperty(window, 'matchMedia', {
+      value: jest.fn(() => {
+        return {
+          matches: true
+        };
+      })
+    });
+  });
+
 
   beforeEach(() => {
     fixture = TestBed.createComponent(AppComponent);

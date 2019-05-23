@@ -29,18 +29,16 @@
               "apps/workspace-klm/src/favicon.ico",
               "apps/workspace-klm/src/assets"
             ],
-            "styles": ["apps/workspace-klm/src/styles.scss"],
-            "scripts": [],
+            "styles": ["node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css", "apps/workspace-klm/src/styles.scss"],
+            "scripts": ["node_modules/hammerjs/hammer.min.js"],
             "es5BrowserSupport": true
           },
           "configurations": {
             "production": {
-              "fileReplacements": [
-                {
-                  "replace": "apps/workspace-klm/src/environments/environment.ts",
-                  "with": "apps/workspace-klm/src/environments/environment.prod.ts"
-                }
-              ],
+              "fileReplacements": [{
+                "replace": "apps/workspace-klm/src/environments/environment.ts",
+                "with": "apps/workspace-klm/src/environments/environment.prod.ts"
+              }],
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
@@ -50,13 +48,11 @@
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
-                }
-              ]
+              "budgets": [{
+                "type": "initial",
+                "maximumWarning": "2mb",
+                "maximumError": "5mb"
+              }]
             }
           }
         },
