@@ -33,7 +33,6 @@ describe('AppComponent', () => {
     });
   });
 
-
   beforeEach(() => {
     fixture = TestBed.createComponent(AppComponent);
     app = fixture.debugElement.componentInstance;

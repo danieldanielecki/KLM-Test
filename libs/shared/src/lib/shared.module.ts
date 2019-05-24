@@ -41,6 +41,6 @@ import { RouterModule } from '@angular/router';
     MatTooltipModule,
     MomentModule,
     RouterModule
-  ],
+  ]
 })
-export class SharedModule { }
+export class SharedModule {}

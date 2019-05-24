@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { fadeAnimation } from '@libs/constants/fade.animation';
+import { fadeAnimation } from 'constants/fade.animation';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
-  selector: 'app-root',
+  selector: 'workspace-klm',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   animations: [fadeAnimation]

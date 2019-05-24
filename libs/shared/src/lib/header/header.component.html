@@ -1,11 +1,16 @@
 <header>
   <mat-sidenav-container class="container">
     <mat-toolbar color="primary">
-      <button mat-icon-button matTooltip="Toggle sidenav" (click)="sidenav.toggle()" fxHide.gt-xs>
+      <button
+        mat-icon-button
+        matTooltip="Toggle sidenav"
+        (click)="sidenav.toggle()"
+        fxHide.gt-xs
+      >
         <fa-icon [icon]="['fas', 'bars']"></fa-icon>
       </button>
       <p fxHide.gt-xs>KLM</p>
-      <img fxHide.lt-sm src="./assets/logo.png" alt="KLM">
+      <img fxHide.lt-sm src="./assets/logo.png" alt="KLM" />
       <div fxFlex="row" fxLayoutAlign="end" fxHide.lt-md>
         <ng-container *ngFor="let menuItem of menuItems">
           <a mat-button routerLink="{{ menuItem.path }}">{{ menuItem.name }}</a>
