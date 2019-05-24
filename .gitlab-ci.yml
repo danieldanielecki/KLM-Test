@@ -1,32 +1,126 @@
-image: node:latest
+image: node:10.15.3-alpine
 
-before_script:
-  - npm install
+variables:
+  npm_config_cache: "$CI_PROJECT_DIR/.npm"
+  CYPRESS_CACHE_FOLDER: "$CI_PROJECT_DIR/cache/Cypress"
 
 cache:
+  key: $CI_COMMIT_REF_SLUG
   paths:
+    - .npm
+    - cache/Cypress
     - node_modules/
-  key: "$CI_BUILD_REPO" # Identifier by which cache is validated.
+
+before_script:
+  - npm ci
 
 stages:
-  - deploy
+  - build
+  - test
+  - staging
+  - production
 
-deploy_development:
-  stage: deploy
+Build:
+  artifacts:
+    expire_in: 1 week
+    paths:
+      - dist/apps/workspace-klm
+    when: always
+  script:
+    - echo $CI_COMMIT_SHORT_SHA
+    - echo $CI_COMMIT_REF_SLUG
+    - echo $CI_JOB_NAME
+    - echo $CI_JOB_STAGE
+    - echo $CI_PIPELINE_ID
+    - echo $CI_PIPELINE_IID
+    - echo $CI_PROJECT_NAME
+    - echo $CI_PROJECT_NAMESPACE
+    - echo $CI_PROJECT_URL
+    - echo $CI_SERVER_VERSION
+    - npm run build:workspace-klm
+  except:
+    variables:
+      - $CI_COMMIT_MESSAGE =~ /skip-ci/ # Add into commit "skip-ci" and it won't run job.
+  stage: build
+
+Dependencies Scanning:
+  except:
+    variables:
+      - $CI_COMMIT_MESSAGE =~ /skip-ci/ # Add into commit "skip-ci" and it won't run job.
+  stage: test
+  script:
+    - npx audit-ci --moderate # Prevent integration with moderate or higher vulnerabilities.
+
+
+Code Quality:
+  except:
+    variables:
+      - $CI_COMMIT_MESSAGE =~ /skip-ci/ # Add into commit "skip-ci" and it won't run this job.
+  stage: test
+  script:
+    - npm run format:check
+
+Static Application Security Testing (SAST):
+  except:
+    variables:
+      - $CI_COMMIT_MESSAGE =~ /skip-ci/ # Add into commit "skip-ci" and it won't run this job.
+  script:
+    - npm run lint
+  stage: test
+
+Unit Tests:
+  except:
+    variables:
+      - $CI_COMMIT_MESSAGE =~ /skip-ci/ # Add into commit "skip-ci" and it won't run this job.
+  script:
+    - npm run test --coverage
+  stage: test
+
+E2E Tests:
+  artifacts:
+    expire_in: 1 week
+    paths:
+      - dist/out-tsc/apps/workspace-klm-e2e/**/*.mp4
+      - dist/out-tsc/apps/workspace-klm-e2e/**/*.png
+    when: always
+  except:
+    variables:
+      - $CI_COMMIT_MESSAGE =~ /skip-ci/
+  image: cypress/base:10
+  script:
+    - npm run e2e
+  stage: test
+
+Deploy to Staging:
+  dependencies:
+    - Build
   environment:
     name: development
-  script:
-    - npm run build
-    - npm run deploy
+  except:
+    variables:
+      - $CI_COMMIT_MESSAGE =~ /skip-ci/
   only:
     - development # Corresponding only to the development branch.
+  script:
+    - npm run deploy
+  stage: staging
 
-deploy_production:
-  stage: deploy
+Deploy to Production:
+  dependencies:
+    - Build
   environment:
     name: production
-  script:
-    - npm run build
-    - npm run deploy
+  except:
+    variables:
+      - $CI_COMMIT_MESSAGE =~ /skip-ci/
   only:
     - master # Corresponding only to the master branch.
+  script:
+    - npm run deploy
+    - echo $CI_BUILD_REPO
+    - echo $CI_ENVIRONMENT_NAME
+    - echo $CI_ENVIRONMENT_SLUG
+    - echo $CI_JOB_MANUAL
+    - echo $CI_JOB_TRIGGERED
+  stage: production
+  when: manual # It'll be run only if will be manually accepted in the CI.

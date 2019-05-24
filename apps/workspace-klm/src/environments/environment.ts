@@ -7,12 +7,12 @@ export const environment = {
   production: false,
   firebaseConfig: {
     apiKey: API_KEY_FIREBASE_DEVELOPMENT,
-    authDomain: "klm-test-dev.firebaseapp.com",
-    databaseURL: "https://klm-test-dev.firebaseio.com",
-    projectId: "klm-test-dev",
-    storageBucket: "klm-test-dev.appspot.com",
-    messagingSenderId: "637039707351",
-    appId: "1:637039707351:web:f33ec705a16b5135"
+    authDomain: 'klm-test-dev.firebaseapp.com',
+    databaseURL: 'https://klm-test-dev.firebaseio.com',
+    projectId: 'klm-test-dev',
+    storageBucket: 'klm-test-dev.appspot.com',
+    messagingSenderId: '637039707351',
+    appId: '1:637039707351:web:f33ec705a16b5135'
   }
 };
 

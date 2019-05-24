@@ -1,11 +1,6 @@
 import { Component } from '@angular/core';
-import {
-  faBan,
-  faBars,
-  faHome
-} from '@fortawesome/free-solid-svg-icons';
+import { faBan, faBars, faHome } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
-
 
 @Component({
   selector: 'workspace-klm-header',

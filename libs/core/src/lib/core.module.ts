@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 
-
 @NgModule({
   exports: [BrowserModule, BrowserAnimationsModule],
   imports: [BrowserModule, BrowserAnimationsModule]
@@ -17,4 +16,3 @@ export class CoreModule {
     }
   }
 }
-
