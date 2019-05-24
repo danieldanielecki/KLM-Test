@@ -10,6 +10,7 @@ import {
   MatToolbarModule,
   MatTooltipModule
 } from '@angular/material';
+import { MomentModule } from 'ngx-moment';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
@@ -26,6 +27,7 @@ import { RouterModule } from '@angular/router';
     MatSidenavModule,
     MatToolbarModule,
     MatTooltipModule,
+    MomentModule,
     RouterModule
   ],
   imports: [
@@ -37,6 +39,7 @@ import { RouterModule } from '@angular/router';
     MatSidenavModule,
     MatToolbarModule,
     MatTooltipModule,
+    MomentModule,
     RouterModule
   ],
 })

@@ -1,6 +1,6 @@
 {
   "name": "workspace-klm",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "lockfileVersion": 1,
   "requires": true,
   "dependencies": {
@@ -10814,6 +10814,11 @@
         }
       }
     },
+    "moment": {
+      "version": "2.24.0",
+      "resolved": "https://registry.npmjs.org/moment/-/moment-2.24.0.tgz",
+      "integrity": "sha512-bV7f+6l2QigeBBZSM/6yTNq4P2fNpSWj/0e7jQcy87A8e7o2nAfP/34/2ky5Vw4B9S446EtIhodAzkFCcR4dQg=="
+    },
     "morgan": {
       "version": "1.9.1",
       "resolved": "https://registry.npmjs.org/morgan/-/morgan-1.9.1.tgz",
@@ -10938,6 +10943,14 @@
       "resolved": "https://registry.npmjs.org/next-tick/-/next-tick-1.0.0.tgz",
       "integrity": "sha1-yobR/ogoFpsBICCOPchCS524NCw=",
       "dev": true
+    },
+    "ngx-moment": {
+      "version": "3.4.0",
+      "resolved": "https://registry.npmjs.org/ngx-moment/-/ngx-moment-3.4.0.tgz",
+      "integrity": "sha512-GEqzSsu12VsXXP35aerlQpuZ1ienEYQZxHmp+RH7EuJD7hWamKgLOpmbiDI9Ij3KLW/UApvonYzZvyRSv3ea/w==",
+      "requires": {
+        "tslib": "1.9.3"
+      }
     },
     "nice-try": {
       "version": "1.0.5",
