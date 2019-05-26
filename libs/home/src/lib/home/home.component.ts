@@ -3,6 +3,7 @@ declare const API_KEY_KLM: string;
 import * as moment from 'moment';
 import { catchError, map } from 'rxjs/operators';
 import { Component, AfterViewInit, ViewChild } from '@angular/core';
+import { environment } from '@workspace-klm/src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
 import { Observable, of as observableOf } from 'rxjs';
@@ -44,14 +45,20 @@ export class HomeComponent implements AfterViewInit {
   ngAfterViewInit() {
     this.getData().subscribe(data => {
       this.dataSource.data = data;
-      // console.log(this.dataSource.data);
+
+      if (!environment.production) {
+        console.log(this.dataSource.data);
+      }
     });
 
     // Update results every 1 minute.
     setInterval(() => {
       this.getData().subscribe(data => {
         this.dataSource.data = data;
-        // console.log(this.dataSource.data);
+
+        if (!environment.production) {
+          console.log(this.dataSource.data);
+        }
       });
     }, 60000);
     this.dataSource.paginator = this.paginator;
@@ -70,8 +77,11 @@ export class HomeComponent implements AfterViewInit {
         .endOf('day')
         .format('YYYY-MM-DDTHH:mm:ss') + 'Z';
 
-    // console.log(currentDate);
-    // console.log(endOfToday);
+    if (!environment.production) {
+      console.log(currentDate);
+      console.log(endOfToday);
+    }
+
     return this.httpClient
       .get(
         'https://api.airfranceklm.com/opendata/flightstatus/?startRange=' +
@@ -92,7 +102,11 @@ export class HomeComponent implements AfterViewInit {
         map((response: any) => {
           this.isLoadingResults = false;
           this.isRateLimitReached = false;
-          // console.log(response);
+
+          if (!environment.production) {
+            console.log(response);
+          }
+
           return response.operationalFlights.map((item: any) => {
             return new SearchItem(
               item.flightNumber.toString(),
@@ -117,12 +131,15 @@ export class HomeComponent implements AfterViewInit {
             );
           });
         }),
-        catchError(<T>(error: any, result?: T) => {
+        catchError((error: any) => {
           this.isLoadingResults = false;
           this.isRateLimitReached = true;
-          console.log(error);
-          return observableOf(result as T);
-          // return observableOf([]);
+
+          if (!environment.production) {
+            console.log(error);
+          }
+
+          return observableOf([]);
         })
       );
   }
