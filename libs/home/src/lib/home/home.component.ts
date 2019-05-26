@@ -30,11 +30,11 @@ export class HomeComponent implements AfterViewInit {
     'flightTime',
     'flightStatus'
   ];
-  private dataSource: MatTableDataSource<SearchItem> = new MatTableDataSource<
+  public dataSource: MatTableDataSource<SearchItem> = new MatTableDataSource<
     SearchItem
   >();
-  private isLoadingResults: boolean = true;
-  private isRateLimitReached: boolean = false;
+  public isLoadingResults: boolean = true;
+  public isRateLimitReached: boolean = false;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
