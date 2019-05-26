@@ -1,1 +1,40 @@
-<h1>Hello world KLM! Test.</h1>
+<section fxFlex="70" fxFlex.md="80" fxFlex.lt-md="90" fxFlexOffset="15" fxFlexOffset.md="10" fxFlexOffset.lt-md="5">
+  <h1>Departures from Schiphol (AMS)</h1>
+  <mat-form-field>
+    <input matInput type="text" placeholder="Enter destination or flight number" [(ngModel)]="searchString">
+  </mat-form-field>
+  <mat-table [dataSource]="results$ | async | filterPipe:searchString" class="mat-elevation-z8">
+
+
+    <ng-container matColumnDef="flightNumber">
+      <mat-header-cell *matHeaderCellDef>Flight (No.)</mat-header-cell>
+      <mat-cell *matCellDef="let flight">{{ flight.flightNumber }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="flightDestination">
+      <mat-header-cell *matHeaderCellDef>Destination</mat-header-cell>
+      <mat-cell *matCellDef="let flight">{{ flight.flightDestination }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="flightScheduled">
+      <mat-header-cell *matHeaderCellDef>Schedule</mat-header-cell>
+      <mat-cell *matCellDef="let flight">{{ flight.flightScheduled }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="flightTime">
+      <mat-header-cell *matHeaderCellDef>Estimated</mat-header-cell>
+      <mat-cell *matCellDef="let flight">{{ flight.flightTime }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="flightStatus">
+      <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
+      <mat-cell *matCellDef="let flight" [ngStyle]="{'color': getColor(flight.flightStatus)}">
+        <strong>{{ flight.flightStatus }}</strong>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+  <mat-paginator [length]="resultsLength" [pageSize]="30"></mat-paginator>
+</section>
