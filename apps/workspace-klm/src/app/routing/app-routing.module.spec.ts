@@ -5,6 +5,7 @@ import {
   MatFormFieldModule,
   MatPaginatorModule,
   MatProgressSpinnerModule,
+  MatSortModule,
   MatTableModule
 } from '@angular/material';
 import { RoutingModule } from './app-routing.module';
@@ -19,6 +20,7 @@ describe('RoutingModule', () => {
         MatFormFieldModule,
         MatPaginatorModule,
         MatProgressSpinnerModule,
+        MatSortModule,
         MatTableModule,
         RouterTestingModule,
         RoutingModule

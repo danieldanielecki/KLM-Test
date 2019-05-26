@@ -2,10 +2,9 @@ declare const API_KEY_KLM: string;
 
 import * as moment from 'moment';
 import { catchError, map } from 'rxjs/operators';
-import { Component, AfterViewInit, ViewChild } from '@angular/core';
-import { environment } from '@workspace-klm/src/environments/environment';
+import { Component, AfterViewInit, ViewChild, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
+import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { Observable, of as observableOf } from 'rxjs';
 
 class SearchItem {
@@ -24,7 +23,7 @@ class SearchItem {
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements AfterViewInit {
-  private displayedColumns: string[] = [
+  public displayedColumns: string[] = [
     'flightNumber',
     'flightDestination',
     'flightScheduled',
@@ -37,7 +36,7 @@ export class HomeComponent implements AfterViewInit {
   public isLoadingResults = true;
   public isRateLimitReached = false;
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  // @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(private httpClient: HttpClient) {}
@@ -46,9 +45,7 @@ export class HomeComponent implements AfterViewInit {
     this.getData().subscribe(data => {
       this.dataSource.data = data;
 
-      if (!environment.production) {
-        console.log(this.dataSource.data);
-      }
+      console.log(this.dataSource.data);
     });
 
     // Update results every 1 minute.
@@ -56,12 +53,10 @@ export class HomeComponent implements AfterViewInit {
       this.getData().subscribe(data => {
         this.dataSource.data = data;
 
-        if (!environment.production) {
-          console.log(this.dataSource.data);
-        }
+        console.log(this.dataSource.data);
       });
     }, 60000);
-    this.dataSource.paginator = this.paginator;
+    // this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
 
@@ -77,10 +72,8 @@ export class HomeComponent implements AfterViewInit {
         .endOf('day')
         .format('YYYY-MM-DDTHH:mm:ss') + 'Z';
 
-    if (!environment.production) {
-      console.log(currentDate);
-      console.log(endOfToday);
-    }
+    console.log(currentDate);
+    console.log(endOfToday);
 
     return this.httpClient
       .get(
@@ -103,9 +96,7 @@ export class HomeComponent implements AfterViewInit {
           this.isLoadingResults = false;
           this.isRateLimitReached = false;
 
-          if (!environment.production) {
-            console.log(response);
-          }
+          console.log(response);
 
           return response.operationalFlights.map((item: any) => {
             return new SearchItem(
@@ -134,10 +125,8 @@ export class HomeComponent implements AfterViewInit {
         catchError((error: any) => {
           this.isLoadingResults = false;
           this.isRateLimitReached = true;
-
-          if (!environment.production) {
-            console.log(error);
-          }
+          alert(error); // TODO: Remove it.
+          console.log(error);
 
           return observableOf([]);
         })

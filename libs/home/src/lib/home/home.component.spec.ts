@@ -8,6 +8,7 @@ import {
   MatInputModule,
   MatPaginatorModule,
   MatProgressSpinnerModule,
+  MatSortModule,
   MatTableModule
 } from '@angular/material';
 
@@ -26,6 +27,7 @@ describe('HomeComponent', () => {
         MatInputModule,
         MatPaginatorModule,
         MatProgressSpinnerModule,
+        MatSortModule,
         MatTableModule
       ]
     }).compileComponents();

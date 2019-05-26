@@ -5,10 +5,11 @@
   fxFlexOffset="15"
   fxFlexOffset.md="10"
   fxFlexOffset.lt-md="5"
+  class="mat-elevation-z8"
 >
   <h1>Departures from Schiphol (AMS)</h1>
 
-  <mat-form-field>
+  <mat-form-field fxLayoutAlign="space-evenly space-evenly">
     <input
       matInput
       type="text"
@@ -17,47 +18,63 @@
     />
   </mat-form-field>
   <div
-    fxLayoutAlign="center center"
+    fxLayoutAlign="space-evenly space-evenly"
     class="example-loading-shade"
     *ngIf="isLoadingResults || isRateLimitReached"
   >
     <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
-    <h3 class="example-rate-limit-reached" *ngIf="isRateLimitReached">
-      No results found &ndash; this might be a server problem. Please report it
-      to the Administrator of this service.
-    </h3>
   </div>
-  <mat-table
-    *ngIf="dataSource.data.length > 0"
-    [dataSource]="dataSource"
-    class="mat-elevation-z8"
-  >
-    <div class="spinner-container" *ngIf="(dataSource.loading$ | async)">
-      <mat-spinner></mat-spinner>
+  <mat-table matSort [dataSource]="dataSource">
+    <div
+      class="example-loading-shade"
+      *ngIf="isLoadingResults || isRateLimitReached"
+    >
+      <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+      <h3 class="example-rate-limit-reached" *ngIf="isRateLimitReached">
+        No results found &ndash; this might be a server problem. Please report
+        it to the Administrator of this service.
+      </h3>
     </div>
+
+    <!-- Flight number column. -->
     <ng-container matColumnDef="flightNumber">
-      <mat-header-cell *matHeaderCellDef>Flight (No.)</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header
+        >Flight (No.)</mat-header-cell
+      >
       <mat-cell *matCellDef="let flight">{{ flight.flightNumber }}</mat-cell>
     </ng-container>
+
+    <!-- Flight destination column. -->
     <ng-container matColumnDef="flightDestination">
-      <mat-header-cell *matHeaderCellDef>Destination</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header
+        >Destination</mat-header-cell
+      >
       <mat-cell *matCellDef="let flight">{{
         flight.flightDestination
       }}</mat-cell>
     </ng-container>
 
+    <!-- Flight scheduled time column. -->
     <ng-container matColumnDef="flightScheduled">
-      <mat-header-cell *matHeaderCellDef>Schedule</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header
+        >Schedule</mat-header-cell
+      >
       <mat-cell *matCellDef="let flight">{{ flight.flightScheduled }}</mat-cell>
     </ng-container>
 
+    <!-- Flight departure time column. -->
     <ng-container matColumnDef="flightTime">
-      <mat-header-cell *matHeaderCellDef>Estimated</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header
+        >Estimated</mat-header-cell
+      >
       <mat-cell *matCellDef="let flight">{{ flight.flightTime }}</mat-cell>
     </ng-container>
 
+    <!-- Flight status column. -->
     <ng-container matColumnDef="flightStatus">
-      <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header
+        >Status</mat-header-cell
+      >
       <mat-cell
         *matCellDef="let flight"
         [ngStyle]="{ color: getColor(flight.flightStatus) }"
@@ -70,5 +87,5 @@
     <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
   </mat-table>
 
-  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  <!-- <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator> -->
 </section>
