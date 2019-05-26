@@ -13,7 +13,8 @@ import {
   MatSidenavModule,
   MatTableModule,
   MatToolbarModule,
-  MatTooltipModule
+  MatTooltipModule,
+  MatProgressSpinnerModule
 } from '@angular/material';
 import { MomentModule } from 'ngx-moment';
 import { NgModule } from '@angular/core';
@@ -34,6 +35,7 @@ import { RouterModule } from '@angular/router';
     MatListModule,
     MatPaginatorModule,
     MatSidenavModule,
+    MatProgressSpinnerModule,
     MatTableModule,
     MatToolbarModule,
     MatTooltipModule,
@@ -50,6 +52,7 @@ import { RouterModule } from '@angular/router';
     MatFormFieldModule,
     MatListModule,
     MatPaginatorModule,
+    MatProgressSpinnerModule,
     MatSidenavModule,
     MatTableModule,
     MatToolbarModule,

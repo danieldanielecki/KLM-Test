@@ -3,9 +3,8 @@ declare const API_KEY_KLM: string;
 import * as moment from 'moment';
 import { catchError, map } from 'rxjs/operators';
 import { Component, AfterViewInit, ViewChild } from '@angular/core';
-import { FilterPipe } from './filter.pipe';
 import { HttpClient } from '@angular/common/http';
-import { MatPaginator } from '@angular/material';
+import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
 import { Observable, of as observableOf } from 'rxjs';
 
 class SearchItem {
@@ -21,11 +20,9 @@ class SearchItem {
 @Component({
   selector: 'workspace-klm',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
-  providers: [FilterPipe]
+  styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements AfterViewInit {
-  resultsLength = 0;
   private displayedColumns: string[] = [
     'flightNumber',
     'flightDestination',
@@ -33,19 +30,32 @@ export class HomeComponent implements AfterViewInit {
     'flightTime',
     'flightStatus'
   ];
-  private results$: Observable<SearchItem[]>;
+  private dataSource: MatTableDataSource<SearchItem> = new MatTableDataSource<
+    SearchItem
+  >();
+  private isLoadingResults: boolean = true;
+  private isRateLimitReached: boolean = false;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private httpClient: HttpClient, private filterPipe: FilterPipe) {}
+  constructor(private httpClient: HttpClient) {}
 
   ngAfterViewInit() {
-    this.results$ = this.getData();
+    this.getData().subscribe(data => {
+      this.dataSource.data = data;
+      // console.log(this.dataSource.data);
+    });
 
     // Update results every 1 minute.
     setInterval(() => {
-      this.results$ = this.getData();
+      this.getData().subscribe(data => {
+        this.dataSource.data = data;
+        // console.log(this.dataSource.data);
+      });
     }, 60000);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   getData(): Observable<SearchItem[]> {
@@ -60,15 +70,15 @@ export class HomeComponent implements AfterViewInit {
         .endOf('day')
         .format('YYYY-MM-DDTHH:mm:ss') + 'Z';
 
-    console.log(currentDate);
-    console.log(endOfToday);
+    // console.log(currentDate);
+    // console.log(endOfToday);
     return this.httpClient
       .get(
         'https://api.airfranceklm.com/opendata/flightstatus/?startRange=' +
           currentDate +
           '&endRange=' +
           endOfToday +
-          '&movementType=D&timeOriginType=S&timeType=U&origin=AMS&pageNumber=0&pageSize=300', // Can't get more than 100.
+          '&movementType=D&timeOriginType=S&timeType=U&origin=AMS&pageNumber=0&pageSize=100', // Can't get more than 100.
         {
           headers: {
             accept:
@@ -79,9 +89,11 @@ export class HomeComponent implements AfterViewInit {
         }
       )
       .pipe(
-        map(response => {
-          console.log(response);
-          return response.operationalFlights.map(item => {
+        map((response: any) => {
+          this.isLoadingResults = false;
+          this.isRateLimitReached = false;
+          // console.log(response);
+          return response.operationalFlights.map((item: any) => {
             return new SearchItem(
               item.flightNumber.toString(),
               item.flightStatusPublicLangTransl.toString(),
@@ -105,8 +117,12 @@ export class HomeComponent implements AfterViewInit {
             );
           });
         }),
-        catchError(() => {
-          return observableOf([]);
+        catchError(<T>(error: any, result?: T) => {
+          this.isLoadingResults = false;
+          this.isRateLimitReached = true;
+          console.log(error);
+          return observableOf(result as T);
+          // return observableOf([]);
         })
       );
   }
@@ -115,10 +131,18 @@ export class HomeComponent implements AfterViewInit {
     switch (country) {
       case 'Delayed departure':
         return 'orange';
+      case 'New departure time':
+        return 'purple';
       case 'On time':
         return 'green';
+      case 'Cancelled':
+        return 'red';
       default:
         return 'black';
     }
+  }
+
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 }
