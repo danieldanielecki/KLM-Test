@@ -33,8 +33,8 @@ export class HomeComponent implements AfterViewInit {
   public dataSource: MatTableDataSource<SearchItem> = new MatTableDataSource<
     SearchItem
   >();
-  public isLoadingResults: boolean = true;
-  public isRateLimitReached: boolean = false;
+  public isLoadingResults = true;
+  public isRateLimitReached = false;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -60,11 +60,11 @@ export class HomeComponent implements AfterViewInit {
 
   getData(): Observable<SearchItem[]> {
     // To synchronize with https://www.schiphol.nl/en/departures/ adding "utc()" is required.
-    let currentDate =
+    const currentDate =
       moment()
         .utc()
         .format('YYYY-MM-DDTHH:mm:ss') + 'Z';
-    let endOfToday =
+    const endOfToday =
       moment()
         .utc()
         .endOf('day')
