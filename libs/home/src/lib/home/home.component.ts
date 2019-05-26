@@ -1,11 +1,16 @@
 declare const API_KEY_KLM: string;
 
 import * as moment from 'moment';
-import { catchError, map } from 'rxjs/operators';
+import {
+  catchError,
+  map,
+  distinctUntilChanged,
+  debounceTime
+} from 'rxjs/operators';
 import { Component, AfterViewInit, ViewChild, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
-import { Observable, of as observableOf } from 'rxjs';
+import { Observable, of as observableOf, Subject } from 'rxjs';
 
 class SearchItem {
   constructor(
@@ -35,8 +40,9 @@ export class HomeComponent implements AfterViewInit {
   >();
   public isLoadingResults = true;
   public isRateLimitReached = false;
+  private searchSubject$: Subject<string> = new Subject<string>();
 
-  // @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(private httpClient: HttpClient) {}
@@ -56,8 +62,18 @@ export class HomeComponent implements AfterViewInit {
         console.log(this.dataSource.data);
       });
     }, 60000);
-    // this.dataSource.paginator = this.paginator;
+    this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+
+    // Display desired results after 1 second.
+    this.searchSubject$
+      .pipe(
+        debounceTime(1000), // Limit requests to maximum one per second.
+        distinctUntilChanged() // Eliminate duplicate values.
+      )
+      .subscribe((filterValue: string) => {
+        this.dataSource.filter = filterValue.trim().toLowerCase(); // Filter data in flights table.
+      });
   }
 
   getData(): Observable<SearchItem[]> {
@@ -149,6 +165,6 @@ export class HomeComponent implements AfterViewInit {
   }
 
   applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.searchSubject$.next(filterValue);
   }
 }
