@@ -7,7 +7,7 @@
   fxFlexOffset.lt-md="5"
   class="mat-elevation-z8"
 >
-  <h1>Departures from Schiphol (AMS)</h1>
+  <h1>Departures from Amsterdam Schiphol</h1>
 
   <mat-form-field fxLayoutAlign="space-evenly space-evenly">
     <input
@@ -38,48 +38,50 @@
 
     <!-- Flight number column. -->
     <ng-container matColumnDef="flightNumber">
-      <mat-header-cell *matHeaderCellDef mat-sort-header
-        >Flight (No.)</mat-header-cell
-      >
-      <mat-cell *matCellDef="let flight">{{ flight.flightNumber }}</mat-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Flight
+      </mat-header-cell>
+      <mat-cell *matCellDef="let flight"> {{ flight.flightNumber }} </mat-cell>
     </ng-container>
 
     <!-- Flight destination column. -->
     <ng-container matColumnDef="flightDestination">
-      <mat-header-cell *matHeaderCellDef mat-sort-header
-        >Destination</mat-header-cell
-      >
-      <mat-cell *matCellDef="let flight">{{
-        flight.flightDestination
-      }}</mat-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Destination
+      </mat-header-cell>
+      <mat-cell *matCellDef="let flight">
+        {{ flight.flightDestination }}
+      </mat-cell>
     </ng-container>
 
     <!-- Flight scheduled time column. -->
     <ng-container matColumnDef="flightScheduled">
-      <mat-header-cell *matHeaderCellDef mat-sort-header
-        >Schedule</mat-header-cell
-      >
-      <mat-cell *matCellDef="let flight">{{ flight.flightScheduled }}</mat-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Scheduled
+      </mat-header-cell>
+      <mat-cell *matCellDef="let flight">
+        {{ flight.flightScheduled }}
+      </mat-cell>
     </ng-container>
 
     <!-- Flight departure time column. -->
     <ng-container matColumnDef="flightTime">
-      <mat-header-cell *matHeaderCellDef mat-sort-header
-        >Estimated</mat-header-cell
-      >
-      <mat-cell *matCellDef="let flight">{{ flight.flightTime }}</mat-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Estimated
+      </mat-header-cell>
+      <mat-cell *matCellDef="let flight"> {{ flight.flightTime }} </mat-cell>
     </ng-container>
 
     <!-- Flight status column. -->
     <ng-container matColumnDef="flightStatus">
-      <mat-header-cell *matHeaderCellDef mat-sort-header
-        >Status</mat-header-cell
-      >
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Status
+      </mat-header-cell>
       <mat-cell
         *matCellDef="let flight"
         [ngStyle]="{ color: getColor(flight.flightStatus) }"
       >
-        <strong>{{ flight.flightStatus }}</strong>
+        <strong> {{ flight.flightStatus }} </strong>
       </mat-cell>
     </ng-container>
 

@@ -4,14 +4,14 @@ describe('Page: home', () => {
   beforeEach(() => cy.visit('/'));
 
   it('should display welcome message', () => {
-    getGreeting().contains('Departures from Schiphol (AMS)');
+    getGreeting().contains('Departures from Amsterdam Schiphol');
   });
 });
 
-describe('Page: not found', () => {
-  beforeEach(() => cy.visit('/not-found'));
+// describe('Page: not found', () => {
+//   beforeEach(() => cy.visit('/not-found'));
 
-  it('should display page not found message', () => {
-    getGreeting().contains('Page Not Found');
-  });
-});
+//   it('should display page not found message', () => {
+//     getGreeting().contains('Page Not Found');
+//   });
+// });
