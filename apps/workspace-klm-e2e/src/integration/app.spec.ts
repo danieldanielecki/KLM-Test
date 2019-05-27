@@ -4,7 +4,7 @@ describe('Page: home', () => {
   beforeEach(() => cy.visit('/'));
 
   it('should display welcome message', () => {
-    getGreeting().contains('Hello world KLM! Test.');
+    getGreeting().contains('Departures from Schiphol (AMS)');
   });
 });
 

@@ -1,5 +1,8 @@
 <workspace-klm-header></workspace-klm-header>
-<main [@routeState]="getRouterOutletState(routerOutlet)">
+<main
+  [@routeState]="getRouterOutletState(routerOutlet)"
+  class="mat-app-background basic-container"
+>
   <router-outlet #routerOutlet="outlet"></router-outlet>
 </main>
 <workspace-klm-footer></workspace-klm-footer>

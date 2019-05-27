@@ -1,22 +1,23 @@
 <header>
   <mat-sidenav-container class="container">
-    <mat-toolbar color="primary">
+    <mat-toolbar color="primary" fxFlex="row">
       <button
         mat-icon-button
         matTooltip="Toggle sidenav"
         (click)="sidenav.toggle()"
-        fxHide.gt-xs
+        fxHide.gt-sm
       >
         <fa-icon [icon]="['fas', 'bars']"></fa-icon>
       </button>
-      <p fxHide.gt-xs>KLM</p>
-      <img fxHide.lt-sm src="./assets/logo.png" alt="KLM" />
-      <div fxFlex="row" fxLayoutAlign="end" fxHide.lt-md>
+      <p fxHide.gt-sm>KLM Royal Dutch Airlines</p>
+      <img fxFlex="20" fxHide.lt-md src="./assets/logo.png" alt="KLM" />
+      <div fxLayoutAlign="end" fxFlex="80" fxHide.lt-md>
         <ng-container *ngFor="let menuItem of menuItems">
           <a mat-button routerLink="{{ menuItem.path }}">{{ menuItem.name }}</a>
         </ng-container>
       </div>
     </mat-toolbar>
+
     <mat-sidenav #sidenav fixedInViewport="true">
       <mat-toolbar>Menu</mat-toolbar>
       <mat-nav-list role="navigation">

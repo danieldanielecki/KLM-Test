@@ -1,10 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 
 @NgModule({
-  exports: [BrowserModule, BrowserAnimationsModule],
-  imports: [BrowserModule, BrowserAnimationsModule]
+  exports: [BrowserModule, BrowserAnimationsModule, HttpClientModule],
+  imports: [BrowserModule, BrowserAnimationsModule, HttpClientModule]
 })
 export class CoreModule {
   // Prevent from importing CoreModule more than once.

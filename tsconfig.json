@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@libs/*": ["libs/*"]
+      "@libs/*": ["libs/*"],
+      "@workspace-klm/*": ["apps/workspace-klm/*"]
     }
   },
   "exclude": ["node_modules", "tmp"]
