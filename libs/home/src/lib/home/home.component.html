@@ -9,7 +9,7 @@
 >
   <h1>Departures from Amsterdam Schiphol</h1>
 
-  <mat-form-field fxLayoutAlign="space-evenly space-evenly">
+  <mat-form-field>
     <input
       matInput
       type="text"
@@ -18,12 +18,13 @@
     />
   </mat-form-field>
   <div
-    fxLayoutAlign="space-evenly space-evenly"
+    fxLayoutAlign="center"
     class="example-loading-shade"
     *ngIf="isLoadingResults || isRateLimitReached"
   >
     <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
   </div>
+
   <mat-table matSort [dataSource]="dataSource">
     <div
       class="example-loading-shade"
@@ -35,13 +36,15 @@
         it to the Administrator of this service.
       </h3>
     </div>
-
     <!-- Flight number column. -->
     <ng-container matColumnDef="flightNumber">
       <mat-header-cell *matHeaderCellDef mat-sort-header>
         Flight
       </mat-header-cell>
-      <mat-cell *matCellDef="let flight"> {{ flight.flightNumber }} </mat-cell>
+      <mat-cell *matCellDef="let flight" fxLayoutAlign.lt-md="center">
+        <span fxHide.gt-sm><strong>Flight:</strong></span
+        >&nbsp;<span>{{ flight.flightNumber }}</span>
+      </mat-cell>
     </ng-container>
 
     <!-- Flight destination column. -->
@@ -49,8 +52,9 @@
       <mat-header-cell *matHeaderCellDef mat-sort-header>
         Destination
       </mat-header-cell>
-      <mat-cell *matCellDef="let flight">
-        {{ flight.flightDestination }}
+      <mat-cell *matCellDef="let flight" fxLayoutAlign.lt-md="center">
+        <span fxHide.gt-sm><strong>Destination:</strong></span
+        >&nbsp;<span>{{ flight.flightDestination }}</span>
       </mat-cell>
     </ng-container>
 
@@ -59,8 +63,9 @@
       <mat-header-cell *matHeaderCellDef mat-sort-header>
         Scheduled
       </mat-header-cell>
-      <mat-cell *matCellDef="let flight">
-        {{ flight.flightScheduled }}
+      <mat-cell *matCellDef="let flight" fxLayoutAlign.lt-md="center">
+        <span fxHide.gt-sm><strong>Scheduled:</strong></span
+        >&nbsp;<span>{{ flight.flightScheduled }}</span>
       </mat-cell>
     </ng-container>
 
@@ -69,7 +74,10 @@
       <mat-header-cell *matHeaderCellDef mat-sort-header>
         Estimated
       </mat-header-cell>
-      <mat-cell *matCellDef="let flight"> {{ flight.flightTime }} </mat-cell>
+      <mat-cell *matCellDef="let flight" fxLayoutAlign.lt-md="center">
+        <span fxHide.gt-sm><strong>Estimated:</strong></span
+        >&nbsp;<span>{{ flight.flightTime }}</span>
+      </mat-cell>
     </ng-container>
 
     <!-- Flight status column. -->
@@ -77,16 +85,27 @@
       <mat-header-cell *matHeaderCellDef mat-sort-header>
         Status
       </mat-header-cell>
-      <mat-cell
-        *matCellDef="let flight"
-        [ngStyle]="{ color: getColor(flight.flightStatus) }"
-      >
-        <strong> {{ flight.flightStatus }} </strong>
+      <mat-cell *matCellDef="let flight" fxLayoutAlign.lt-md="center">
+        <span fxHide.gt-sm><strong>Status:</strong></span
+        >&nbsp;
+        <span
+          ><strong [ngStyle]="{ color: getColor(flight.flightStatus) }">
+            {{ flight.flightStatus }}
+          </strong></span
+        >
       </mat-cell>
     </ng-container>
 
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    <mat-header-row
+      *matHeaderRowDef="displayedColumns"
+      fxHide.lt-md
+    ></mat-header-row>
+
+    <mat-row
+      *matRowDef="let row; columns: displayedColumns"
+      fxLayout.lt-md="column"
+      fxLayoutAlign="start"
+    ></mat-row>
   </mat-table>
 
   <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
