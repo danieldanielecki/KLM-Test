@@ -1,5 +1,6 @@
 section {
-  margin: 2rem auto;
+  padding: 2em;
+  margin: 2em auto;
 
   h1,
   h3 {
@@ -11,7 +12,7 @@ section {
   }
 
   mat-form-field {
-    text-align: center;
+    width: 100%;
   }
 
   mat-cell {
@@ -20,5 +21,21 @@ section {
 
   mat-header-cell {
     font-weight: 900;
+  }
+}
+
+@media (max-width: 960px) {
+  mat-cell {
+    &:first-child {
+      margin-top: 2em;
+    }
+
+    span {
+      font-size: 1em;
+    }
+  }
+
+  mat-row {
+    border-bottom: 5px solid rgba(0, 0, 0, 0.12);
   }
 }
