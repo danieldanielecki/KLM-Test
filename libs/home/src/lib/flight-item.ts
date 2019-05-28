@@ -4,6 +4,6 @@ export class FlightItem {
     public flightStatus: string,
     public flightDestination: string,
     public flightScheduled: Date,
-    public flightTime: Date
+    public flightEstimated: Date
   ) {}
 }
