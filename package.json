@@ -1,6 +1,6 @@
 {
   "name": "workspace-klm",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "license": "ISC",
   "author": "Daniel Danielecki",
   "description": "KLM test for front-end position",
@@ -43,6 +43,7 @@
     "@angular/platform-browser": "^7.0.0",
     "@angular/platform-browser-dynamic": "^7.0.0",
     "@angular/router": "^7.0.0",
+    "@angular/service-worker": "^7.2.15",
     "@fortawesome/angular-fontawesome": "^0.3.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.18",
     "@fortawesome/free-solid-svg-icons": "^5.8.2",

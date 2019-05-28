@@ -1,6 +1,6 @@
 {
   "name": "workspace-klm",
-  "version": "0.2.2",
+  "version": "0.2.5",
   "lockfileVersion": 1,
   "requires": true,
   "dependencies": {
@@ -648,6 +648,14 @@
       "version": "7.2.15",
       "resolved": "https://registry.npmjs.org/@angular/router/-/router-7.2.15.tgz",
       "integrity": "sha512-qAubRJRQanguUqJQ76J9GSZ4JFtoyhJKRmX5P23ANZJXpB6YLzF2fJmOGi+E6cV8F0tKBMEq1pjxFTisx0MXwQ==",
+      "requires": {
+        "tslib": "^1.9.0"
+      }
+    },
+    "@angular/service-worker": {
+      "version": "7.2.15",
+      "resolved": "https://registry.npmjs.org/@angular/service-worker/-/service-worker-7.2.15.tgz",
+      "integrity": "sha512-fl4oAXka2hfELLpRdV6U0Gas/Gk8/coDnRUJD0JXJuQj0SJE0IosuByL6CYAYMOsnJxpOduES8y+1lEnT3Fhpg==",
       "requires": {
         "tslib": "^1.9.0"
       }
