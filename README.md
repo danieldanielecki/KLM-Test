@@ -58,7 +58,7 @@ If you would like to check how the application has been debugged, I left `consol
 
 ## Remarks
 
-1. "startRange" in the [technical documentation](https://developer.airfranceklm.com/docs/read/opendata/flight_status_api/method_reference/GET_flightstatus) is a bit confusing, the "Now" doesn't work, it could be better to write that it has to be in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format without milliseconds. The same applies to "endRange".
+1. "startRange" in the [technical documentation](https://developer.airfranceklm.com/docs/read/opendata/flight_status_api/method_reference/GET_flightstatus) is a bit confusing, the "Now" doesn't work, it could be better to write that it has to be in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format without a [time offset](https://en.wikipedia.org/wiki/UTC_offset). The same applies to "endRange".
 2. Also from the documentation, "pageSize" can't take more than 100.
 3. If you wouldn't see a "Help & Acessibility" it can be due to some antiviruses false positives, see [this issue](https://github.com/sockjs/sockjs-client/issues/300#issuecomment-208092544). My antivirus blocked the script loaded by ... [Cloudfront](https://aws.amazon.com/cloudfront/). If you wouldn't like to see any accessibility plugin please let me know.
 4. Please use a modern browser, compatibiltiy table for used flexbox is [here](https://caniuse.com/#search=flexbox). In case of Internet Explorer would be used neither "justify-content: space-evenly" nor Grid Layout has not been used.
