@@ -22,7 +22,7 @@ const agastya = new Agastya(API_KEY_AGASTYA);
     NxModule.forRoot(),
     RoutingModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: environment.production
+      enabled: true
     }),
     SharedModule
   ]
