@@ -86,7 +86,7 @@
     </ng-container>
 
     <!-- Flight departure time column. -->
-    <ng-container matColumnDef="flightTime">
+    <ng-container matColumnDef="flightEstimated">
       <mat-header-cell *matHeaderCellDef mat-sort-header>
         Estimated
       </mat-header-cell>
@@ -94,10 +94,10 @@
         <span
           fxHide.gt-sm
           attr.aria-label="The flight estimated departure time is {{
-            flight.flightTime
+            flight.flightEstimated
           }}."
           ><strong>Estimated:</strong></span
-        >&nbsp;<span>{{ flight.flightTime }}</span>
+        >&nbsp;<span>{{ flight.flightEstimated }}</span>
       </mat-cell>
     </ng-container>
 

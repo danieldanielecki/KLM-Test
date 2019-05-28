@@ -5,7 +5,7 @@ describe('FlightItem', () => {
   const flightStatus = 'fakeStatus';
   const flightDestination = 'fakeDestination';
   const flightScheduled: Date = new Date();
-  const flightTime: Date = new Date();
+  const flightEstimated: Date = new Date();
 
   it('should create an instance of FlightItem class with 5 parameters', () => {
     expect(
@@ -14,7 +14,7 @@ describe('FlightItem', () => {
         flightStatus,
         flightDestination,
         flightScheduled,
-        flightTime
+        flightEstimated
       )
     ).toBeTruthy();
   });

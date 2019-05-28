@@ -15,7 +15,7 @@ export class HomeComponent implements AfterViewInit {
     'flightNumber',
     'flightDestination',
     'flightScheduled',
-    'flightTime',
+    'flightEstimated',
     'flightStatus'
   ];
   public dataSource: MatTableDataSource<FlightItem> = new MatTableDataSource<
