@@ -44,7 +44,7 @@
       <mat-header-cell *matHeaderCellDef mat-sort-header>
         Flight
       </mat-header-cell>
-      <mat-cell *matCellDef="let flight" fxLayoutAlign.lt-md="center">
+      <mat-cell *matCellDef="let flight" fxLayoutAlign.lt-md="center center">
         <span fxHide.gt-sm><strong>Flight:</strong></span
         >&nbsp;<span
           attr.aria-label="The flight number is {{ flight.flightNumber }}."
@@ -58,7 +58,7 @@
       <mat-header-cell *matHeaderCellDef mat-sort-header>
         Destination
       </mat-header-cell>
-      <mat-cell *matCellDef="let flight" fxLayoutAlign.lt-md="center">
+      <mat-cell *matCellDef="let flight" fxLayoutAlign.lt-md="center center">
         <span fxHide.gt-sm><strong>Destination:</strong></span
         >&nbsp;<span
           attr.aria-label="The flight destination is {{
@@ -74,7 +74,7 @@
       <mat-header-cell *matHeaderCellDef mat-sort-header>
         Scheduled
       </mat-header-cell>
-      <mat-cell *matCellDef="let flight" fxLayoutAlign.lt-md="center">
+      <mat-cell *matCellDef="let flight" fxLayoutAlign.lt-md="center center">
         <span fxHide.gt-sm><strong>Scheduled:</strong></span
         >&nbsp;<span
           attr.aria-label="The flight scheduled time is {{
@@ -98,7 +98,9 @@
           }}."
           ><strong>Estimated:</strong></span
         >
-        >&nbsp;<span>{{ flight.flightTime }}</span>
+        154a037... Change: improve UI/UX >&nbsp;<span>{{
+          flight.flightTime
+        }}</span>
       </mat-cell>
     </ng-container>
 
@@ -124,7 +126,7 @@
 
     <!-- Header of flights. -->
     <mat-header-row
-      *matHeaderRowDef="displayedColumns"
+      *matHeaderRowDef="displayedColumns; sticky: true"
       fxHide.lt-md
     ></mat-header-row>
 

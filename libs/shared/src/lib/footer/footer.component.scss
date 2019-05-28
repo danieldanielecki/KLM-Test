@@ -1,7 +1,12 @@
 footer {
-  background: black;
+  background: #222222;
+  bottom: 0;
+  height: 50px;
+  left: 0;
+  position: fixed;
+  right: 0;
 
   p {
-    color: white;
+    color: #fafafa;
   }
 }
