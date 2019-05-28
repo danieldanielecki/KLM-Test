@@ -1,11 +1,11 @@
 declare const API_KEY_KLM: string;
 
 import * as moment from 'moment';
-import { catchError, map } from 'rxjs/operators';
+import { catchError, finalize, map, tap } from 'rxjs/operators';
 import { FlightItem } from './flight-item';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of as observableOf } from 'rxjs';
+import { Observable, of as observableOf, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -78,14 +78,32 @@ export class ApiFlightsService {
             );
           });
         }),
+        // Handle errors.
         catchError((error: any) => {
           this.isLoadingResults = false;
           this.isRateLimitReached = true;
-          alert(error); // TODO: Remove it.
-          console.log(error);
 
-          return observableOf([]);
-        })
+          console.log('Caught mapping error: ', error);
+          return throwError(error); // Throw an error.
+        }),
+        finalize(() => {
+          console.log("First 'finalize()' has been executed.");
+        }),
+        catchError((error: any) => {
+          this.isLoadingResults = false;
+          this.isRateLimitReached = true;
+
+          console.log('Caught throwing error: ', error);
+          return observableOf([]); // Return fallback value.
+        }),
+        finalize(() => {
+          console.log("Second 'finalize()' has been executed.");
+        }),
+        tap(
+          res => console.log('HTTP response: ', res),
+          err => console.log('HTTP error: ', err),
+          () => console.log('HTTP request completed.')
+        )
       );
   }
 }

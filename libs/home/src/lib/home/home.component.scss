@@ -11,16 +11,16 @@ section {
     color: red;
   }
 
-  mat-form-field {
-    width: 100%;
-  }
-
   mat-cell {
     font-weight: 500;
   }
 
   mat-header-cell {
     font-weight: 900;
+  }
+
+  mat-form-field {
+    width: 100%;
   }
 }
 

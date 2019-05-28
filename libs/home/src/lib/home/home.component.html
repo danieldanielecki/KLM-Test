@@ -44,7 +44,7 @@
       <mat-header-cell *matHeaderCellDef mat-sort-header>
         Flight
       </mat-header-cell>
-      <mat-cell *matCellDef="let flight" fxLayoutAlign.lt-md="center">
+      <mat-cell *matCellDef="let flight" fxLayoutAlign.lt-md="center center">
         <span fxHide.gt-sm><strong>Flight:</strong></span
         >&nbsp;<span>{{ flight.flightNumber }}</span>
       </mat-cell>
@@ -55,7 +55,7 @@
       <mat-header-cell *matHeaderCellDef mat-sort-header>
         Destination
       </mat-header-cell>
-      <mat-cell *matCellDef="let flight" fxLayoutAlign.lt-md="center">
+      <mat-cell *matCellDef="let flight" fxLayoutAlign.lt-md="center center">
         <span fxHide.gt-sm><strong>Destination:</strong></span
         >&nbsp;<span>{{ flight.flightDestination }}</span>
       </mat-cell>
@@ -66,7 +66,7 @@
       <mat-header-cell *matHeaderCellDef mat-sort-header>
         Scheduled
       </mat-header-cell>
-      <mat-cell *matCellDef="let flight" fxLayoutAlign.lt-md="center">
+      <mat-cell *matCellDef="let flight" fxLayoutAlign.lt-md="center center">
         <span fxHide.gt-sm><strong>Scheduled:</strong></span
         >&nbsp;<span>{{ flight.flightScheduled }}</span>
       </mat-cell>
@@ -77,7 +77,7 @@
       <mat-header-cell *matHeaderCellDef mat-sort-header>
         Estimated
       </mat-header-cell>
-      <mat-cell *matCellDef="let flight" fxLayoutAlign.lt-md="center">
+      <mat-cell *matCellDef="let flight" fxLayoutAlign.lt-md="center center">
         <span fxHide.gt-sm><strong>Estimated:</strong></span
         >&nbsp;<span>{{ flight.flightTime }}</span>
       </mat-cell>
@@ -88,7 +88,7 @@
       <mat-header-cell *matHeaderCellDef mat-sort-header>
         Status
       </mat-header-cell>
-      <mat-cell *matCellDef="let flight" fxLayoutAlign.lt-md="center">
+      <mat-cell *matCellDef="let flight" fxLayoutAlign.lt-md="center center">
         <span fxHide.gt-sm><strong>Status:</strong></span
         >&nbsp;
         <span
@@ -101,7 +101,7 @@
 
     <!-- Header of flights. -->
     <mat-header-row
-      *matHeaderRowDef="displayedColumns"
+      *matHeaderRowDef="displayedColumns; sticky: true"
       fxHide.lt-md
     ></mat-header-row>
 
