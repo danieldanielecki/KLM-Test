@@ -46,7 +46,10 @@
       </mat-header-cell>
       <mat-cell *matCellDef="let flight" fxLayoutAlign.lt-md="center">
         <span fxHide.gt-sm><strong>Flight:</strong></span
-        >&nbsp;<span>{{ flight.flightNumber }}</span>
+        >&nbsp;<span
+          attr.aria-label="The flight number is {{ flight.flightNumber }}."
+          >{{ flight.flightNumber }}</span
+        >
       </mat-cell>
     </ng-container>
 
@@ -57,7 +60,12 @@
       </mat-header-cell>
       <mat-cell *matCellDef="let flight" fxLayoutAlign.lt-md="center">
         <span fxHide.gt-sm><strong>Destination:</strong></span
-        >&nbsp;<span>{{ flight.flightDestination }}</span>
+        >&nbsp;<span
+          attr.aria-label="The flight destination is {{
+            flight.flightDestination
+          }}."
+          >{{ flight.flightDestination }}</span
+        >
       </mat-cell>
     </ng-container>
 
@@ -68,7 +76,12 @@
       </mat-header-cell>
       <mat-cell *matCellDef="let flight" fxLayoutAlign.lt-md="center">
         <span fxHide.gt-sm><strong>Scheduled:</strong></span
-        >&nbsp;<span>{{ flight.flightScheduled }}</span>
+        >&nbsp;<span
+          attr.aria-label="The flight scheduled time is {{
+            flight.flightScheduled
+          }}."
+          >{{ flight.flightScheduled }}</span
+        >
       </mat-cell>
     </ng-container>
 
@@ -77,8 +90,14 @@
       <mat-header-cell *matHeaderCellDef mat-sort-header>
         Estimated
       </mat-header-cell>
-      <mat-cell *matCellDef="let flight" fxLayoutAlign.lt-md="center">
-        <span fxHide.gt-sm><strong>Estimated:</strong></span
+      <mat-cell *matCellDef="let flight" fxLayoutAlign.lt-md="center center">
+        <span
+          fxHide.gt-sm
+          attr.aria-label="The flight estimated departure time is {{
+            flight.flightTime
+          }}."
+          ><strong>Estimated:</strong></span
+        >
         >&nbsp;<span>{{ flight.flightTime }}</span>
       </mat-cell>
     </ng-container>
@@ -88,8 +107,12 @@
       <mat-header-cell *matHeaderCellDef mat-sort-header>
         Status
       </mat-header-cell>
-      <mat-cell *matCellDef="let flight" fxLayoutAlign.lt-md="center">
-        <span fxHide.gt-sm><strong>Status:</strong></span
+      <mat-cell *matCellDef="let flight" fxLayoutAlign.lt-md="center center">
+        <span
+          fxHide.gt-sm
+          attr.aria-label="The flight status is {{ flight.flightStatus }}."
+          ><strong>Status:</strong></span
+        >
         >&nbsp;
         <span
           ><strong [ngStyle]="{ color: getColor(flight.flightStatus) }">
