@@ -6,7 +6,7 @@
   "description": "KLM test for front-end position",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --host 0.0.0.0 --poll 1",
     "build:workspace-klm": "ng build --prod --project=workspace-klm",
     "test": "ng test || exit 0",
     "lint": "./node_modules/.bin/nx lint && ng lint",
