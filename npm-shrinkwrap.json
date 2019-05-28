@@ -1,6 +1,6 @@
 {
   "name": "workspace-klm",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "lockfileVersion": 1,
   "requires": true,
   "dependencies": {
@@ -2086,9 +2086,9 @@
       "dev": true
     },
     "agastya": {
-      "version": "4.0.0",
-      "resolved": "https://registry.npmjs.org/agastya/-/agastya-4.0.0.tgz",
-      "integrity": "sha512-ecQi4qJlgtRge7bTAvmvvSr95P0avq6Kd2dmDAOTR0Jd8DgFTwnKapNAb2xOGOqroMDzbbzu5GxVWs3rIKQWJw==",
+      "version": "4.1.0",
+      "resolved": "https://registry.npmjs.org/agastya/-/agastya-4.1.0.tgz",
+      "integrity": "sha512-4ZXQ/r6TwvtYsJpBdhkc5+9SdTVyDAIMOm6NrdI6qDUsWyL04T1vCr57VPBsvzVE60TdzvoQhINqP4B0PUqXnw==",
       "requires": {
         "scriptjs": "^2.5.9"
       }
