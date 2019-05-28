@@ -28,8 +28,8 @@ export class ApiFlightsService {
         .endOf('day')
         .format('YYYY-MM-DDTHH:mm:ss') + 'Z';
 
-    console.log(currentDate);
-    console.log(endOfToday);
+    // console.log(currentDate);
+    // console.log(endOfToday);
 
     return this.httpClient
       .get(
@@ -52,7 +52,7 @@ export class ApiFlightsService {
           this.isLoadingResults = false;
           this.isRateLimitReached = false;
 
-          console.log(response);
+          // console.log(response);
 
           return response.operationalFlights.map((item: any) => {
             return new FlightItem(
@@ -83,27 +83,26 @@ export class ApiFlightsService {
           this.isLoadingResults = false;
           this.isRateLimitReached = true;
 
-          console.log('Caught mapping error: ', error);
+          // console.log('Caught mapping error: ', error);
           return throwError(error); // Throw an error.
         }),
         finalize(() => {
-          console.log("First 'finalize()' has been executed.");
+          // console.log("First 'finalize()' has been executed.");
         }),
         catchError((error: any) => {
           this.isLoadingResults = false;
           this.isRateLimitReached = true;
 
-          console.log('Caught throwing error: ', error);
+          // console.log('Caught throwing error: ', error);
           return observableOf([]); // Return fallback value.
         }),
         finalize(() => {
-          console.log("Second 'finalize()' has been executed.");
+          // console.log("Second 'finalize()' has been executed.");
         }),
-        tap(
-          res => console.log('HTTP response: ', res),
-          err => console.log('HTTP error: ', err),
-          () => console.log('HTTP request completed.')
-        )
+        tap()
+        // res => console.log('HTTP response: ', res),
+        // err => console.log('HTTP error: ', err),
+        // () => console.log('HTTP request completed.')
       );
   }
 }

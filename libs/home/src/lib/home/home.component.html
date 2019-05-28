@@ -97,10 +97,7 @@
             flight.flightTime
           }}."
           ><strong>Estimated:</strong></span
-        >
-        154a037... Change: improve UI/UX >&nbsp;<span>{{
-          flight.flightTime
-        }}</span>
+        >&nbsp;<span>{{ flight.flightTime }}</span>
       </mat-cell>
     </ng-container>
 
@@ -115,7 +112,7 @@
           attr.aria-label="The flight status is {{ flight.flightStatus }}."
           ><strong>Status:</strong></span
         >
-        >&nbsp;
+        &nbsp;
         <span
           ><strong [ngStyle]="{ color: getColor(flight.flightStatus) }">
             {{ flight.flightStatus }}

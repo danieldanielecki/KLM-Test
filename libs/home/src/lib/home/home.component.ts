@@ -37,14 +37,14 @@ export class HomeComponent implements AfterViewInit {
       this.isLoadingResults = this.apiFlightsService.isLoadingResults;
       this.isRateLimitReached = this.apiFlightsService.isRateLimitReached;
 
-      console.log(this.dataSource.data);
+      // console.log(this.dataSource.data);
     });
 
     // Update results every 1 minute.
     setInterval(() => {
       this.apiFlightsService.getData().subscribe(data => {
         this.dataSource.data = data;
-        console.log(this.dataSource.data);
+        // console.log(this.dataSource.data);
       });
     }, 60000);
     this.dataSource.paginator = this.paginator;
