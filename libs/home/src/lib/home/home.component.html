@@ -9,6 +9,7 @@
 >
   <h1>Departures from Amsterdam Schiphol</h1>
 
+  <!-- Filtering input. -->
   <mat-form-field>
     <input
       matInput
@@ -25,7 +26,9 @@
     <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
   </div>
 
+  <!-- Flights table with sorting. -->
   <mat-table matSort [dataSource]="dataSource">
+    <!-- Show spinner, and based on the results show appropriate results. -->
     <div
       class="example-loading-shade"
       *ngIf="isLoadingResults || isRateLimitReached"
@@ -96,6 +99,7 @@
       </mat-cell>
     </ng-container>
 
+    <!-- Header of flights. -->
     <mat-header-row
       *matHeaderRowDef="displayedColumns"
       fxHide.lt-md
@@ -108,5 +112,6 @@
     ></mat-row>
   </mat-table>
 
+  <!-- Pagination. -->
   <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
 </section>
