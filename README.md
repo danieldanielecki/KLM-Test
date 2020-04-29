@@ -62,3 +62,16 @@ If you would like to check how the application has been debugged, I left `consol
 2. Also from the documentation, "pageSize" can't take more than 100.
 3. If you wouldn't see a "Help & Acessibility" it can be due to some antiviruses false positives, see [this issue](https://github.com/sockjs/sockjs-client/issues/300#issuecomment-208092544). My antivirus blocked the script loaded by ... [Cloudfront](https://aws.amazon.com/cloudfront/). If you wouldn't like to see any accessibility plugin please let me know.
 4. Please use a modern browser, compatibiltiy table for used flexbox is [here](https://caniuse.com/#search=flexbox). In case of Internet Explorer would be used neither "justify-content: space-evenly" nor Grid Layout has not been used.
+
+## Feedback
+
+1. Pros
++  Responsive layout
++  Modular architecture approach 
++ Docker configuration to create a container, however when the container is up runs the webpack dev server. It would’ve been better if it’d have run a standalone NodeJS server
+ 
+2. Some improvements
++ The filter functionality only filters the already loaded records. It’s a missed opportunity in the use of the API
++ Lack of app optimization: 100 records are loaded, all at once. The use of the pagination provided by the API (which is a common implementation) is not well implemented
++ A few use of !important rule in CSS, which is a bad practice
++ The unit tests do not cover logic, they are pretty much the default created by Angular CLI
